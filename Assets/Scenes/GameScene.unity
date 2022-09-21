@@ -168,6 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visual: {fileID: 315361887}
+  playerAnimator: {fileID: 1553985833}
   forwardSpeed: 5
   horizontalSpeed: 3
   horizontalInputSensitivity: 2
@@ -305,6 +306,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d7d96bef0d379194099f6d63e7d25994, type: 3}
       propertyPath: m_Name
       value: Main_Character@T-Pose
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: d7d96bef0d379194099f6d63e7d25994, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: b65456a86da7a1e468221bbb676acc4a, type: 2}
+    - target: {fileID: 5866666021909216657, guid: d7d96bef0d379194099f6d63e7d25994, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7d96bef0d379194099f6d63e7d25994, type: 3}
@@ -583,6 +592,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1553985833 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: d7d96bef0d379194099f6d63e7d25994, type: 3}
+  m_PrefabInstance: {fileID: 633476033}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1564194809
 GameObject:
   m_ObjectHideFlags: 0

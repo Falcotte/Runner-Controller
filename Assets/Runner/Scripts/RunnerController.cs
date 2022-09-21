@@ -6,6 +6,7 @@ namespace AngryKoala.RunnerControls
     public class RunnerController : MonoBehaviour
     {
         [SerializeField] private Transform visual;
+        [SerializeField] private Animator playerAnimator;
 
         [SerializeField] private float forwardSpeed;    // Percentage of distance traveled per second
         [SerializeField] private float horizontalSpeed;
@@ -51,6 +52,8 @@ namespace AngryKoala.RunnerControls
 
                 visual.localPosition = new Vector3(Mathf.Lerp(visual.localPosition.x, targetXPos, horizontalSpeed * Time.deltaTime), visual.localPosition.y, visual.localPosition.z);
                 visual.localRotation = Quaternion.Euler(new Vector3(0f, (visual.localPosition.x - targetXPos) * -maxPlayerRotation / (Mathf.Abs(horizontalPositionLimits.x) + Mathf.Abs(horizontalPositionLimits.y)), 0f));
+
+                playerAnimator.SetBool("IsMoving", isMoving);
             }
         }
 
