@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visual: {fileID: 315361887}
-  forwardSpeed: 0
+  forwardSpeed: 5
   horizontalSpeed: 3
   horizontalInputSensitivity: 2
   horizontalPositionLimits: {x: -4, y: 4}
