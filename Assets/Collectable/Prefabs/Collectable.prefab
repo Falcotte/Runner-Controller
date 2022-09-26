@@ -121,8 +121,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2381800709940560116}
-  - component: {fileID: 2381800709940560117}
   - component: {fileID: 2381800709940560118}
+  - component: {fileID: 2381800709940560117}
+  - component: {fileID: 8205993341621816342}
   m_Layer: 0
   m_Name: Collectable
   m_TagString: Untagged
@@ -145,21 +146,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2381800709940560117
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2381800709940560119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f522ffca2eabb5e4ab19e3082cb1d867, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  amount: 1
-  visual: {fileID: 2381800708772151480}
-  collectableCollider: {fileID: 2381800709940560118}
 --- !u!65 &2381800709940560118
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -173,3 +159,39 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &2381800709940560117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2381800709940560119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f522ffca2eabb5e4ab19e3082cb1d867, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visual: {fileID: 2381800708772151480}
+  animationController: {fileID: 8205993341621816342}
+  collectableCollider: {fileID: 2381800709940560118}
+  amount: 1
+--- !u!114 &8205993341621816342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2381800709940560119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85f490fe3d4ea7d429ba3147f69935f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visual: {fileID: 2381800708772151480}
+  verticalMovementAmount: 0.3
+  verticalMovementDuration: 1.5
+  rotationSpeed: 60
+  scaleAmount: 0
+  scaleDuration: 0
+  collectionScaleAmount: 1.2
+  collectionDuration: 0.3
