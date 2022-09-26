@@ -170,10 +170,10 @@ MonoBehaviour:
   visual: {fileID: 315361887}
   playerAnimator: {fileID: 504784097}
   forwardSpeed: 5
-  horizontalSpeed: 3
+  horizontalSpeed: 5
   horizontalInputSensitivity: 2
   horizontalPositionLimits: {x: -4, y: 4}
-  maxPlayerRotation: 45
+  maxPlayerRotation: 55
 --- !u!1 &315361886
 GameObject:
   m_ObjectHideFlags: 0

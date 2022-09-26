@@ -29,12 +29,14 @@ namespace AngryKoala.RunnerControls
         {
             InputManager.Instance.InputAreas[0].OnTouch += StartMovement;
             InputManager.Instance.InputAreas[0].OnDragDeltaScreenPercent += MoveHorizontal;
+            InputManager.Instance.InputAreas[0].OnTouchUp += ResetTargetXPos;
         }
 
         private void OnDisable()
         {
             InputManager.Instance.InputAreas[0].OnTouch -= StartMovement;
             InputManager.Instance.InputAreas[0].OnDragDeltaScreenPercent -= MoveHorizontal;
+            InputManager.Instance.InputAreas[0].OnTouchUp -= ResetTargetXPos;
         }
 
         private void Update()
@@ -51,7 +53,7 @@ namespace AngryKoala.RunnerControls
                 }
 
                 visual.localPosition = new Vector3(Mathf.Lerp(visual.localPosition.x, targetXPos, horizontalSpeed * Time.deltaTime), visual.localPosition.y, visual.localPosition.z);
-                visual.localRotation = Quaternion.Euler(new Vector3(0f, (visual.localPosition.x - targetXPos) * -maxPlayerRotation / (Mathf.Abs(horizontalPositionLimits.x) + Mathf.Abs(horizontalPositionLimits.y)), 0f));
+                visual.localRotation = Quaternion.Euler(new Vector3(0f, Mathf.Clamp((visual.localPosition.x - targetXPos) * -maxPlayerRotation / ((Mathf.Abs(horizontalPositionLimits.x) + Mathf.Abs(horizontalPositionLimits.y) / 2f)), -maxPlayerRotation, maxPlayerRotation), 0f));
 
                 playerAnimator.SetBool("IsMoving", isMoving);
             }
@@ -67,6 +69,8 @@ namespace AngryKoala.RunnerControls
 
         private void StopMovement()
         {
+            ResetTargetXPos();
+
             isMoving = false;
         }
 
@@ -76,6 +80,14 @@ namespace AngryKoala.RunnerControls
             {
                 targetXPos += dragDeltaPercent.x * (Mathf.Abs(horizontalPositionLimits.x) + Mathf.Abs(horizontalPositionLimits.y)) * horizontalInputSensitivity;
                 targetXPos = Mathf.Clamp(targetXPos, horizontalPositionLimits.x, horizontalPositionLimits.y);
+            }
+        }
+
+        private void ResetTargetXPos()
+        {
+            if(isMoving)
+            {
+                targetXPos = Mathf.Lerp(targetXPos, visual.localPosition.x, .8f);
             }
         }
     }
