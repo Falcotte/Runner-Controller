@@ -25,6 +25,8 @@ namespace AngryKoala.RunnerControls
 
         private bool hasReachedEnd;
 
+        private int collectedCollectables;
+
         private void OnEnable()
         {
             InputManager.Instance.InputAreas[0].OnTouch += StartMovement;
@@ -59,6 +61,8 @@ namespace AngryKoala.RunnerControls
             }
         }
 
+        #region Movement
+
         private void StartMovement()
         {
             if(!hasReachedEnd)
@@ -89,6 +93,13 @@ namespace AngryKoala.RunnerControls
             {
                 targetXPos = Mathf.Lerp(targetXPos, visual.localPosition.x, .8f);
             }
+        }
+
+        #endregion
+
+        public void CollectCollectable(int amount)
+        {
+            collectedCollectables += amount;
         }
     }
 }
