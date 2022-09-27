@@ -1,5 +1,5 @@
 using UnityEngine;
-using AngryKoala.Collection;
+using AngryKoala.Interaction;
 
 namespace AngryKoala.RunnerControls
 {

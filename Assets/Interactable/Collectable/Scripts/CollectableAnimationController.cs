@@ -1,7 +1,7 @@
 using UnityEngine;
 using DG.Tweening;
 
-namespace AngryKoala.Collection
+namespace AngryKoala.Interaction
 {
     public class CollectableAnimationController : MonoBehaviour
     {
