@@ -26,6 +26,7 @@ namespace AngryKoala.RunnerControls
         private bool hasReachedEnd;
 
         private int collectedCollectables;
+        public int CollectedCollectables => collectedCollectables;
 
         private void OnEnable()
         {
@@ -97,9 +98,9 @@ namespace AngryKoala.RunnerControls
 
         #endregion
 
-        public void CollectCollectable(int amount)
+        public void AdjustCollectedAmount(int amount)
         {
-            collectedCollectables += amount;
+            collectedCollectables = amount;
 
             UIManager.Instance.UpdateCollectableText(collectedCollectables);
         }

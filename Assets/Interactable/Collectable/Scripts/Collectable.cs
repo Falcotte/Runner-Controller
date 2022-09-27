@@ -12,7 +12,9 @@ namespace AngryKoala.Interaction
 
         protected override void Interact(RunnerCollisionHandler runnerCollisionHandler)
         {
-            runnerCollisionHandler.CollectCollectable(this);
+            base.Interact(runnerCollisionHandler);
+
+            runnerCollisionHandler.RunnerController.AdjustCollectedAmount(runnerCollisionHandler.RunnerController.CollectedCollectables + amount);
 
             animationController.StopIdleAnimation();
             animationController.PlayCollectionAnimation();

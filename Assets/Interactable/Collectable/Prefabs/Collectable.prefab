@@ -171,9 +171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f522ffca2eabb5e4ab19e3082cb1d867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visual: {fileID: 2381800708772151480}
+  interactableCollider: {fileID: 2381800709940560118}
   animationController: {fileID: 8205993341621816342}
-  collectableCollider: {fileID: 2381800709940560118}
   amount: 1
 --- !u!114 &8205993341621816342
 MonoBehaviour:
@@ -190,7 +189,9 @@ MonoBehaviour:
   visual: {fileID: 2381800708772151480}
   verticalMovementAmount: 0.3
   verticalMovementDuration: 1.5
-  rotationSpeed: 60
+  rotationSpeedX: 0
+  rotationSpeedY: 60
+  rotationSpeedZ: 60
   scaleAmount: 0
   scaleDuration: 0
   collectionScaleAmount: 1.2
