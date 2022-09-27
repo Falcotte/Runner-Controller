@@ -100,6 +100,8 @@ namespace AngryKoala.RunnerControls
         public void CollectCollectable(int amount)
         {
             collectedCollectables += amount;
+
+            UIManager.Instance.UpdateCollectableText(collectedCollectables);
         }
     }
 }
