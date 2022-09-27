@@ -10,7 +10,11 @@ namespace AngryKoala.Interaction
         [Header("Idle")]
         [SerializeField] protected float verticalMovementAmount;
         [SerializeField] protected float verticalMovementDuration;
-        [SerializeField] protected float rotationSpeed;
+
+        [SerializeField] protected float rotationSpeedX;
+        [SerializeField] protected float rotationSpeedY;
+        [SerializeField] protected float rotationSpeedZ;
+
         [SerializeField] protected float scaleAmount;
         [SerializeField] protected float scaleDuration;
 
@@ -25,8 +29,12 @@ namespace AngryKoala.Interaction
 
         protected virtual void PlayIdleAnimation()
         {
-            visual.DOBlendableLocalMoveBy(Vector3.up * verticalMovementAmount, verticalMovementDuration).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
-            visual.DOBlendableLocalRotateBy(Vector3.up, rotationSpeed, RotateMode.Fast).SetSpeedBased(true).SetEase(Ease.Linear).SetLoops(-1, LoopType.Incremental);
+            visual.DOMove(visual.position + Vector3.up * verticalMovementAmount, verticalMovementDuration).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
+
+            visual.DOBlendableLocalRotateBy(Vector3.right, rotationSpeedX, RotateMode.Fast).SetSpeedBased(true).SetEase(Ease.Linear).SetLoops(-1, LoopType.Incremental);
+            visual.DOBlendableLocalRotateBy(Vector3.up, rotationSpeedY, RotateMode.Fast).SetSpeedBased(true).SetEase(Ease.Linear).SetLoops(-1, LoopType.Incremental);
+            visual.DOBlendableLocalRotateBy(Vector3.forward, rotationSpeedZ, RotateMode.Fast).SetSpeedBased(true).SetEase(Ease.Linear).SetLoops(-1, LoopType.Incremental);
+
             visual.DOBlendableScaleBy(Vector3.one * scaleAmount, scaleDuration).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
         }
 
