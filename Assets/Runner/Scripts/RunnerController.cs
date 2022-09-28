@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 using AngryKoala.Inputs;
 
 namespace AngryKoala.RunnerControls
@@ -16,6 +17,9 @@ namespace AngryKoala.RunnerControls
 
         [SerializeField] private float maxPlayerRotation;
 
+        [SerializeField] private float obstaclePushBackDistance;
+        [SerializeField] private float obstaclePushBackDuration;
+
         private float currentTraveledDistance;
 
         private float targetXPos;
@@ -23,21 +27,21 @@ namespace AngryKoala.RunnerControls
         private bool isMoving;
         public bool IsMoving => isMoving;
 
-        private bool hasReachedEnd;
+        private bool runnerStarted;
 
         private int collectedCollectables;
         public int CollectedCollectables => collectedCollectables;
 
         private void OnEnable()
         {
-            InputManager.Instance.InputAreas[0].OnTouch += StartMovement;
+            InputManager.Instance.InputAreas[0].OnTouchDown += StartRunner;
             InputManager.Instance.InputAreas[0].OnDragDeltaScreenPercent += MoveHorizontal;
             InputManager.Instance.InputAreas[0].OnTouchUp += ResetTargetXPos;
         }
 
         private void OnDisable()
         {
-            InputManager.Instance.InputAreas[0].OnTouch -= StartMovement;
+            InputManager.Instance.InputAreas[0].OnTouchDown -= StartRunner;
             InputManager.Instance.InputAreas[0].OnDragDeltaScreenPercent -= MoveHorizontal;
             InputManager.Instance.InputAreas[0].OnTouchUp -= ResetTargetXPos;
         }
@@ -52,6 +56,7 @@ namespace AngryKoala.RunnerControls
                 if(currentTraveledDistance >= 100f)
                 {
                     currentTraveledDistance = 100f;
+
                     StopMovement();
                 }
 
@@ -64,12 +69,18 @@ namespace AngryKoala.RunnerControls
 
         #region Movement
 
+        private void StartRunner()
+        {
+            if(!runnerStarted)
+            {
+                runnerStarted = true;
+                StartMovement();
+            }
+        }
+
         private void StartMovement()
         {
-            if(!hasReachedEnd)
-            {
-                isMoving = true;
-            }
+            isMoving = true;
         }
 
         private void StopMovement()
@@ -103,6 +114,27 @@ namespace AngryKoala.RunnerControls
             collectedCollectables = amount;
 
             UIManager.Instance.UpdateCollectableText(collectedCollectables);
+        }
+
+        public void HitObstacle()
+        {
+            StopMovement();
+
+            Sequence hitObstacleSequence = DOTween.Sequence();
+            hitObstacleSequence.AppendCallback(() =>
+            {
+                playerAnimator.SetTrigger("HitObstacle");
+                visual.DOLocalRotate(Vector3.zero, .25f);
+            });
+            hitObstacleSequence.Append(DOTween.To(() => currentTraveledDistance, x => currentTraveledDistance = x, currentTraveledDistance - obstaclePushBackDistance, obstaclePushBackDuration).OnUpdate(() =>
+            {
+                transform.position = Vector3.Lerp(RunnerLevel.Instance.RunnerStartTransform.position, RunnerLevel.Instance.RunnerEndTransform.position, currentTraveledDistance / 100f);
+            }));
+            hitObstacleSequence.AppendCallback(() =>
+            {
+                ResetTargetXPos();
+                StartMovement();
+            });
         }
     }
 }
