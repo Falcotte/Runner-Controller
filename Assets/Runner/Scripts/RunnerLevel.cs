@@ -12,10 +12,12 @@ namespace AngryKoala.RunnerControls
         public Transform RunnerEndTransform => runnerEndTransform;
 
         [SerializeField] private Transform pathSectionHolder;
-        [SerializeField] private GameObject finishLine;
 
         [SerializeField] private GameObject pathSectionPrefab;
         [SerializeField] private int pathResolution;
+
+        [SerializeField] private Transform finishPlatform;
+        [SerializeField] private GameObject finishLine;
 
         [SerializeField] private List<GameObject> pathSections = new List<GameObject>();
 
@@ -43,6 +45,9 @@ namespace AngryKoala.RunnerControls
             }
 
             finishLine.transform.position = runnerEndTransform.position + Vector3.up * .02f;
+
+            finishPlatform.position = runnerEndTransform.position + new Vector3(0f, -1.02f, 19.9f);
+            finishPlatform.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         }
     }
 }
