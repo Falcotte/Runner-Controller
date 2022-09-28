@@ -112,6 +112,7 @@ namespace AngryKoala.RunnerControls
         public void AdjustCollectedAmount(int amount)
         {
             collectedCollectables = amount;
+            collectedCollectables = Mathf.Max(0, amount);
 
             UIManager.Instance.UpdateCollectableText(collectedCollectables);
         }
