@@ -29,7 +29,7 @@ namespace AngryKoala.Interaction
                 switch(gates[i].ActionType)
                 {
                     case Gate.ActionTypes.Add:
-                        gates[i].GateText.text = $"+{gates[i].Amount}";
+                        gates[i].GateText.text = gates[i].Amount > 0 ? $"+{gates[i].Amount}" : $"{gates[i].Amount}";
                         break;
                     case Gate.ActionTypes.Multiply:
                         gates[i].GateText.text = $"x{gates[i].Amount}";
