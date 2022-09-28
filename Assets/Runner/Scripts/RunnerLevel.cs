@@ -32,21 +32,22 @@ namespace AngryKoala.RunnerControls
 
             Vector3 pathPlacementPosition = runnerStartTransform.position - Vector3.forward * 20f;
 
-            float pathDistance = (runnerEndTransform.position.z + 20f - (runnerStartTransform.position.z - 20f)) / pathResolution;
+            float pathDistance = (runnerEndTransform.position.z + 10f - (runnerStartTransform.position.z - 20f)) / pathResolution;
 
             for(int i = 0; i < pathResolution; i++)
             {
+
+                pathPlacementPosition += i == 0 ? Vector3.forward * pathDistance / 2f : Vector3.forward * pathDistance;
+
                 GameObject pathSection = Instantiate(pathSectionPrefab, pathPlacementPosition, Quaternion.identity, pathSectionHolder);
                 pathSection.transform.localScale = new Vector3(1f, 1f, pathDistance);
 
                 pathSections.Add(pathSection);
-
-                pathPlacementPosition += Vector3.forward * pathDistance;
             }
 
             finishLine.transform.position = runnerEndTransform.position + Vector3.up * .02f;
 
-            finishPlatform.position = runnerEndTransform.position + new Vector3(0f, -1.02f, 19.9f);
+            finishPlatform.position = runnerEndTransform.position + Vector3.forward * 10f;
             finishPlatform.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         }
     }
