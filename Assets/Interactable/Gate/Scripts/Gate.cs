@@ -6,14 +6,21 @@ namespace AngryKoala.Interaction
 {
     public class Gate : MonoBehaviour
     {
+        [SerializeField] private TextMeshPro gateText;
+        public TextMeshPro GateText => gateText;
+
         public enum ActionTypes { Add, Multiply };
         [SerializeField] private ActionTypes actionType;
         public ActionTypes ActionType => actionType;
 
-        [SerializeField] private TextMeshPro gateText;
-
         [SerializeField] private int amount;
         public int Amount => amount;
+
+        public void SetGate(ActionTypes actionType, int amount)
+        {
+            this.actionType = actionType;
+            this.amount = amount;
+        }
 
         public void Action(RunnerController runnerController)
         {
