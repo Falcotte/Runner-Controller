@@ -11,6 +11,9 @@ namespace AngryKoala.RunnerControls
         [SerializeField] private Transform runnerEndTransform;
         public Transform RunnerEndTransform => runnerEndTransform;
 
+        [SerializeField] private Transform finishPlatformCenter;
+        public Transform FinishPlatformCenter => finishPlatformCenter;
+
         [SerializeField] private Transform pathSectionHolder;
 
         [SerializeField] private GameObject pathSectionPrefab;

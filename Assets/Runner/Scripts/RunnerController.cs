@@ -53,17 +53,18 @@ namespace AngryKoala.RunnerControls
                 currentTraveledDistance += forwardSpeed * Time.deltaTime;
                 transform.position = Vector3.Lerp(RunnerLevel.Instance.RunnerStartTransform.position, RunnerLevel.Instance.RunnerEndTransform.position, currentTraveledDistance / 100f);
 
+                visual.localPosition = new Vector3(Mathf.Lerp(visual.localPosition.x, targetXPos, horizontalSpeed * Time.deltaTime), visual.localPosition.y, visual.localPosition.z);
+                visual.localRotation = Quaternion.Euler(new Vector3(0f, Mathf.Clamp((visual.localPosition.x - targetXPos) * -maxPlayerRotation / ((Mathf.Abs(horizontalPositionLimits.x) + Mathf.Abs(horizontalPositionLimits.y) / 2f)), -maxPlayerRotation, maxPlayerRotation), 0f));
+
+                playerAnimator.SetBool("IsMoving", isMoving);
+
                 if(currentTraveledDistance >= 100f)
                 {
                     currentTraveledDistance = 100f;
 
                     StopMovement();
+                    MoveToFinish();
                 }
-
-                visual.localPosition = new Vector3(Mathf.Lerp(visual.localPosition.x, targetXPos, horizontalSpeed * Time.deltaTime), visual.localPosition.y, visual.localPosition.z);
-                visual.localRotation = Quaternion.Euler(new Vector3(0f, Mathf.Clamp((visual.localPosition.x - targetXPos) * -maxPlayerRotation / ((Mathf.Abs(horizontalPositionLimits.x) + Mathf.Abs(horizontalPositionLimits.y) / 2f)), -maxPlayerRotation, maxPlayerRotation), 0f));
-
-                playerAnimator.SetBool("IsMoving", isMoving);
             }
         }
 
@@ -105,6 +106,22 @@ namespace AngryKoala.RunnerControls
             {
                 targetXPos = Mathf.Lerp(targetXPos, visual.localPosition.x, .8f);
             }
+        }
+
+        private void MoveToFinish()
+        {
+            float moveToFinishDuration = 100f / ((RunnerLevel.Instance.RunnerEndTransform.position.z - RunnerLevel.Instance.RunnerStartTransform.position.z) * forwardSpeed) * 20f;
+
+            Sequence moveToFinishSequence = DOTween.Sequence();
+            moveToFinishSequence.Append(visual.DOLookAt(RunnerLevel.Instance.FinishPlatformCenter.position, .2f));
+            moveToFinishSequence.Join(transform.DOMove(RunnerLevel.Instance.FinishPlatformCenter.position, moveToFinishDuration));
+            moveToFinishSequence.Join(visual.DOLocalMove(Vector3.zero, moveToFinishDuration));
+            moveToFinishSequence.AppendCallback(() =>
+            {
+                playerAnimator.SetBool("IsMoving", isMoving);
+
+                visual.DOLookAt(visual.position - RunnerLevel.Instance.FinishPlatformCenter.forward, .6f);
+            });
         }
 
         #endregion
