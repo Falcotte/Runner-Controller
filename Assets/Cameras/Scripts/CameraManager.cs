@@ -9,6 +9,7 @@ public class CameraManager : MonoSingleton<CameraManager>
     public Camera MainCamera => mainCamera;
 
     [SerializeField] private CinemachineVirtualCamera followCamera;
+    [SerializeField] private CinemachineVirtualCamera finishCamera;
 
     private UniversalAdditionalCameraData cameraData;
 
@@ -36,6 +37,12 @@ public class CameraManager : MonoSingleton<CameraManager>
         cameraData.renderType = CameraRenderType.Overlay;
 
         this.cameraData.cameraStack.Add(camera);
+    }
+
+    public void EnableFinishCamera()
+    {
+        followCamera.Priority = 0;
+        finishCamera.Priority = 10;
     }
 
     public void ShakeCamera(float camShakeStrength, float camShakeDuration, int camShakeVibrato = 10, float camShakeElasticity = 1f)

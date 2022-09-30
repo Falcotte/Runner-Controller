@@ -120,6 +120,8 @@ namespace AngryKoala.RunnerControls
             moveToFinishSequence.Join(visual.DOLocalMove(Vector3.zero, moveToFinishDuration));
             moveToFinishSequence.AppendCallback(() =>
             {
+                CameraManager.Instance.EnableFinishCamera();
+
                 playerAnimator.SetTrigger(turnRight ? "TurnRight" : "TurnLeft");
                 visual.DOLookAt(visual.position - RunnerLevel.Instance.FinishPlatformCenter.forward, 1.3f);
             });
