@@ -112,15 +112,16 @@ namespace AngryKoala.RunnerControls
         {
             float moveToFinishDuration = 100f / ((RunnerLevel.Instance.RunnerEndTransform.position.z - RunnerLevel.Instance.RunnerStartTransform.position.z) * forwardSpeed) * 20f;
 
+            bool turnRight = RunnerLevel.Instance.RunnerEndTransform.position.x - visual.position.x >= 0f;
+
             Sequence moveToFinishSequence = DOTween.Sequence();
             moveToFinishSequence.Append(visual.DOLookAt(RunnerLevel.Instance.FinishPlatformCenter.position, .2f));
             moveToFinishSequence.Join(transform.DOMove(RunnerLevel.Instance.FinishPlatformCenter.position, moveToFinishDuration));
             moveToFinishSequence.Join(visual.DOLocalMove(Vector3.zero, moveToFinishDuration));
             moveToFinishSequence.AppendCallback(() =>
             {
-                playerAnimator.SetBool("IsMoving", isMoving);
-
-                visual.DOLookAt(visual.position - RunnerLevel.Instance.FinishPlatformCenter.forward, .6f);
+                playerAnimator.SetTrigger(turnRight ? "TurnRight" : "TurnLeft");
+                visual.DOLookAt(visual.position - RunnerLevel.Instance.FinishPlatformCenter.forward, 1.3f);
             });
         }
 
