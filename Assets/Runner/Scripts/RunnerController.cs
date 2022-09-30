@@ -138,6 +138,8 @@ namespace AngryKoala.RunnerControls
         {
             StopMovement();
 
+            CameraManager.Instance.ShakeCamera(2f, 1f);
+
             Sequence hitObstacleSequence = DOTween.Sequence();
             hitObstacleSequence.AppendCallback(() =>
             {

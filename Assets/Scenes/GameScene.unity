@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &5055047 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4435380775441361313, guid: a0e4d6eda685c0d4f924d72ea5506e48, type: 3}
-  m_PrefabInstance: {fileID: 4435380775437356006}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5821361
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3186,6 +3181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 1687258584}
+  followCamera: {fileID: 1228724732}
 --- !u!1 &792908124
 GameObject:
   m_ObjectHideFlags: 0
@@ -5474,7 +5470,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 5055047}
+  m_Follow: {fileID: 4435380775437356007}
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 5
@@ -9047,13 +9043,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4435380775441361326, guid: a0e4d6eda685c0d4f924d72ea5506e48, type: 3}
-      propertyPath: obstaclePushBackDistance
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4435380775441361326, guid: a0e4d6eda685c0d4f924d72ea5506e48, type: 3}
-      propertyPath: obstaclePushBackDuration
-      value: 1.1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0e4d6eda685c0d4f924d72ea5506e48, type: 3}
+--- !u!4 &4435380775437356007 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3326482840937956437, guid: a0e4d6eda685c0d4f924d72ea5506e48, type: 3}
+  m_PrefabInstance: {fileID: 4435380775437356006}
+  m_PrefabAsset: {fileID: 0}
