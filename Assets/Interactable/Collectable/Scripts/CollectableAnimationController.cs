@@ -19,7 +19,15 @@ namespace AngryKoala.Interaction
         [SerializeField] protected float scaleDuration;
 
         [Header("Collection")]
+        [SerializeField] protected AnimationCurve collectionCurve;
+
+        [SerializeField] protected Vector2 collectionXAmount;
+        [SerializeField] protected Vector2 collectionYAmount;
+        [SerializeField] protected Vector2 collectionZAmount;
+
         [SerializeField] protected float collectionScaleAmount;
+
+        [SerializeField] protected Vector3 collectionTargetOffset;
         [SerializeField] protected float collectionDuration;
 
         private void Start()
@@ -43,15 +51,39 @@ namespace AngryKoala.Interaction
             DOTween.Kill(visual);
         }
 
-        public virtual void PlayCollectionAnimation()
+        public virtual void PlayCollectionAnimation(Transform target)
         {
-            visual.DOScale(collectionScaleAmount, collectionDuration / 2f).OnComplete(() =>
-              {
-                  visual.DOScale(0f, collectionDuration / 2f).OnComplete(() =>
-                  {
-                      gameObject.SetActive(false);
-                  });
-              });
+            Vector3 initialPosition = visual.position;
+            Vector3 initialScale = visual.localScale;
+
+            float posDeltaX = Random.Range(collectionXAmount.x, collectionXAmount.y) * Mathf.Sign(Random.Range(-1f, 1f));
+            float posDeltaY = Random.Range(collectionYAmount.x, collectionYAmount.y);
+            float posDeltaZ = Random.Range(collectionZAmount.x, collectionZAmount.y);
+
+            float collectionProgress = 0f;
+
+            Sequence collectionSequence = DOTween.Sequence();
+            collectionSequence.SetEase(collectionCurve);
+            collectionSequence.Append(DOTween.To(() => collectionProgress, x => collectionProgress = x, 1f, collectionDuration / 2f).SetEase(Ease.Linear).OnUpdate(() =>
+            {
+                visual.position = new Vector3(Mathf.Lerp(initialPosition.x, initialPosition.x + posDeltaX, collectionProgress),
+                    Mathf.Lerp(initialPosition.y, initialPosition.y + posDeltaY, collectionProgress),
+                    Mathf.Lerp(initialPosition.z, initialPosition.z + posDeltaZ, collectionProgress));
+
+                visual.localScale = Vector3.Lerp(initialScale, Vector3.one * collectionScaleAmount, collectionProgress);
+            }));
+            collectionSequence.Append(DOTween.To(() => collectionProgress, x => collectionProgress = x, 0f, collectionDuration / 2f).SetEase(Ease.Linear).OnUpdate(() =>
+            {
+                visual.position = new Vector3(Mathf.Lerp(target.position.x + collectionTargetOffset.x, initialPosition.x + posDeltaX, collectionProgress),
+                    Mathf.Lerp(target.position.y + collectionTargetOffset.y, initialPosition.y + posDeltaY, collectionProgress),
+                    Mathf.Lerp(target.position.z + collectionTargetOffset.z, initialPosition.z + posDeltaZ, collectionProgress));
+
+                visual.localScale = Vector3.Lerp(Vector3.zero, Vector3.one * collectionScaleAmount, collectionProgress);
+            }));
+            collectionSequence.AppendCallback(() =>
+            {
+                gameObject.SetActive(false);
+            });
         }
     }
 }

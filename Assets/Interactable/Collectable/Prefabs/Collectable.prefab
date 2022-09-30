@@ -194,5 +194,42 @@ MonoBehaviour:
   rotationSpeedZ: 60
   scaleAmount: 0
   scaleDuration: 0
-  collectionScaleAmount: 1.2
+  collectionCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2.598939
+      outSlope: 2.598939
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.0987025
+    - serializedVersion: 3
+      time: 0.50312716
+      value: 0.49769893
+      inSlope: -0.014578809
+      outSlope: -0.014578809
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.16250993
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2.83342
+      outSlope: 2.83342
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.14082532
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  collectionXAmount: {x: 1.5, y: 2}
+  collectionYAmount: {x: 2, y: 3}
+  collectionZAmount: {x: 0, y: 0}
+  collectionScaleAmount: 1.3
+  collectionTargetOffset: {x: 0, y: 1.75, z: 0}
   collectionDuration: 0.3

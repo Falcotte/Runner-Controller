@@ -17,7 +17,7 @@ namespace AngryKoala.Interaction
             runnerCollisionHandler.RunnerController.AdjustCollectedAmount(runnerCollisionHandler.RunnerController.CollectedCollectables + amount);
 
             animationController.StopIdleAnimation();
-            animationController.PlayCollectionAnimation();
+            animationController.PlayCollectionAnimation(runnerCollisionHandler.transform);
         }
     }
 }
