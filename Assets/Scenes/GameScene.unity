@@ -690,8 +690,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1610360769}
-  - {fileID: 1540964423}
   - {fileID: 534966988}
+  - {fileID: 1540964423}
   - {fileID: 1301211038}
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -5121,7 +5121,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8735140085688916130, guid: a7fcecb7fbee63345856e35e4689118a, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8735140085688916130, guid: a7fcecb7fbee63345856e35e4689118a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5175,6 +5175,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gate (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8735140086115397234, guid: a7fcecb7fbee63345856e35e4689118a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cac831ccce6c64e4d9d46fca41039e93, type: 2}
+    - target: {fileID: 8735140086186486710, guid: a7fcecb7fbee63345856e35e4689118a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cac831ccce6c64e4d9d46fca41039e93, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7fcecb7fbee63345856e35e4689118a, type: 3}
 --- !u!4 &1545301515 stripped
@@ -7001,6 +7009,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gate
       objectReference: {fileID: 0}
+    - target: {fileID: 8735140086115397234, guid: a7fcecb7fbee63345856e35e4689118a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cac831ccce6c64e4d9d46fca41039e93, type: 2}
+    - target: {fileID: 8735140086186486710, guid: a7fcecb7fbee63345856e35e4689118a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cac831ccce6c64e4d9d46fca41039e93, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7fcecb7fbee63345856e35e4689118a, type: 3}
 --- !u!1001 &9146689022025764676
