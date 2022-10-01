@@ -16,12 +16,16 @@ namespace AngryKoala.Interaction
             {
                 gate.AdjustGateTexts();
                 EditorUtility.SetDirty(gate);
+                EditorUtility.SetDirty(gate.Gates[0].GateText);
+                EditorUtility.SetDirty(gate.Gates[1].GateText);
             }
 
             if(GUILayout.Button("Swap Gates"))
             {
                 gate.SwapGates();
                 EditorUtility.SetDirty(gate);
+                EditorUtility.SetDirty(gate.Gates[0].GateText);
+                EditorUtility.SetDirty(gate.Gates[1].GateText);
             }
         }
     }
