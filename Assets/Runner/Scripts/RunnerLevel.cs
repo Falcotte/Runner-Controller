@@ -51,7 +51,6 @@ namespace AngryKoala.RunnerControls
             finishLine.transform.position = runnerEndTransform.position + Vector3.up * .02f;
 
             finishPlatform.position = runnerEndTransform.position + Vector3.forward * 10f;
-            finishPlatform.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         }
     }
 }
